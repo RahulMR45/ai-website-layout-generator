@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import './App.css'
 function App() {
   const [formData, setFormData] = useState({
     websiteType: '',
@@ -12,7 +12,7 @@ function App() {
   });
   const [generatedCode, setGeneratedCode] = useState('');
   const [websiteImage, setWebsiteImage] = useState('');
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -42,7 +42,8 @@ function App() {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">AI Website Layout Generator</h1>
+      <h1 className="text-2xl font-bold mb-6">InstantSite-AI</h1>
+     <center><h6>ai website layout generator</h6></center> 
       
       <form onSubmit={handleSubmit} className="space-y-4">
         <select 
@@ -68,14 +69,15 @@ function App() {
           className="w-full p-2 border rounded"
           required
         />
-
-        <input 
-          type="color"
-          name="color"
-          value={formData.color}
-          onChange={handleInputChange}
-          className="w-full p-2 border rounded"
-        />
+        
+     <h4>select color</h4>
+     <input
+  type="color"
+  name="color"
+  value={formData.color}
+  onChange={handleInputChange}
+  className="w-20 h-20 rounded-full border-none shadow-md"
+/>
 
         <select 
           name="font" 
@@ -108,22 +110,13 @@ function App() {
           required
         />
 
-        <button 
+       <center> <button 
           type="submit" 
           className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
         >
           Generate Website
-        </button>
+        </button></center>
       </form>
-
-      {generatedCode && (
-        <div className="mt-6">
-          <h2 className="text-xl font-bold mb-4">Generated Website Code</h2>
-          <pre className="bg-gray-100 p-4 rounded overflow-x-auto">
-            {generatedCode}
-          </pre>
-        </div>
-      )}
 
       {websiteImage && (
         <div className="mt-6">
@@ -135,6 +128,16 @@ function App() {
           />
         </div>
       )}
+      {generatedCode && (
+        <div className="mt-6">
+          <h2 className="text-xl font-bold mb-4">Generated Website Code</h2>
+          <pre className="bg-gray-100 p-4 rounded overflow-x-auto">
+            {generatedCode}
+          </pre>
+        </div>
+      )}
+
+      
     </div>
   );
 }
